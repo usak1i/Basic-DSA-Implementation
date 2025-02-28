@@ -8,39 +8,39 @@ typedef struct {
 	int arr[MAX_SIZE];
 	int front;
 	int rear;
-} quene;
+} queue;
 
-quene *init_quene();
-void enquene(quene *q, int val);
-void dequene(quene *q);
-void print_quene(quene *q);
-int peek(quene *q);
-bool isEmpty(quene *q);
-bool isFull(quene *q);
+queue *init_queue();
+void enqueue(queue *q, int val);
+void dequeue(queue *q);
+void print_queue(queue *q);
+int peek(queue *q);
+bool isEmpty(queue *q);
+bool isFull(queue *q);
 
 int main(int argc, char *argv[]) {
-	quene *q = init_quene();
+	queue *q = init_queue();
 
-	enquene(q, 3);
-	enquene(q, 6);
-	enquene(q, 9);
+	enqueue(q, 3);
+	enqueue(q, 6);
+	enqueue(q, 9);
 
-	print_quene(q);
+	print_queue(q);
 
 	if (isEmpty(q) == true)
-		printf("The quene is Empty\n");
+		printf("The queue is Empty\n");
 	else
 		printf("%d\n", peek(q));
 
-	dequene(q);
+	dequeue(q);
 
-	print_quene(q);
+	print_queue(q);
 
 	return 0;
 }
 
-quene *init_quene() {
-	quene *q = malloc(sizeof(quene));
+queue *init_queue() {
+	queue *q = malloc(sizeof(queue));
 
 	q->front = -1;
 	q->rear = 0;
@@ -48,24 +48,24 @@ quene *init_quene() {
 	return q;
 }
 
-bool isEmpty(quene *q) {
+bool isEmpty(queue *q) {
 	return (q->front == q->rear - 1);
 }
 
-bool isFull(quene *q) {
+bool isFull(queue *q) {
 	return (q->rear == MAX_SIZE);
 }
 
-void enquene(quene *q, int val) {
+void enqueue(queue *q, int val) {
 	if (isFull(q)) {
-		printf("Quene is alreafy full\n");
+		printf("queue is alreafy full\n");
 		return; 
 	}
 
 	q->arr[q->rear++] = val;
 }
 
-void dequene(quene *q) {
+void dequeue(queue *q) {
 	if (isEmpty(q)) {
 		printf("There is nothing to pop\n");
 		return;
@@ -74,22 +74,22 @@ void dequene(quene *q) {
 	q->front++;
 }
 
-int peek(quene *q) {
+int peek(queue *q) {
 	if (isEmpty(q)) {
-		printf("The quene is Empty\n");
+		printf("The queue is Empty\n");
 		return 0;
 	}
 
 	return q->arr[q->front + 1];
 }
 
-void print_quene(quene *q) {
+void print_queue(queue *q) {
 	if (isEmpty(q)) {
-		printf("There is no element in quene\n");
+		printf("There is no element in queue\n");
 		return;
 	}
 
-	printf("Current quene:");
+	printf("Current queue:");
 	for (int i = q->front + 1; i < q->rear; i++) {
 		printf(" %d", q->arr[i]);
 	}
