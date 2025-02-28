@@ -1,2 +1,2 @@
 # Basic-DSA-Implementation
-Using c language to implement basic data structures and algorithms
+Using C language to implement basic data structures and algorithms
